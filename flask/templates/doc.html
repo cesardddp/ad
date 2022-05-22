@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% block main %}
+
+
+
+
+<div id="app">
+    <h3>OUTRAS ATIVIDADES RELEVANTES</h3>
+    {% for atv in atividades %}
+    <hr>
+    <div class="pam _3-95 _2pi0 _2lej uiBoxWhite noborder" @input="atualiza($event)" id="{{atv['_id']}}"
+        contenteditable="true">
+        <button @click="apagar($event)">APAGAR</button>
+        {{atv['html']|safe|escape}}
+    </div>
+    {% endfor %}
+</div>
+<script src="https://unpkg.com/lodash@4.17.20/lodash.min.js"></script>
+<script>
+    const def_app = {
+        data() {
+            return {
+                teste: ""
+            }
+        },
+        watch: {
+            teste() {
+                debugger
+            }
+        },
+        methods: {
+            get_item(evento) {
+                console.log(evento.target)
+                debugger
+                axios.put('http://127.0.0.1:5000/',
+                    evento.target.innerHTML
+                )
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            apagar(event) {
+                //debugger
+                axios.delete('http://127.0.0.1:5000/' + event.target.parentElement.id)
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            atualiza: _.debounce(function (event) {
+                axios.patch('http://127.0.0.1:5000/update/' + event.target.id,
+                    event.target.innerHTML.slice(46)
+                )
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }, 500)
+        }
+    }
+    const vm = Vue.createApp(def_app)
+    vm.mount("#app")
+</script>
+
+{% endblock main %}

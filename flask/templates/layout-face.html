@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <base href="../" />
+    <title>Publicações</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/face.min.css') }}">
+</head>
+
+<body class="_5vb_ _2yq _4yic">
+    <div class="clearfix _ikh">
+        <div class="_4bl9">
+            <div class="_li">
+                <div id="bluebarRoot" class="_2t-8 _1s4v _2s1x _h2p _3b0a">
+                    <div aria-label="Facebook" class="_2t-a _26aw _5rmj _50ti _2s1y" role="banner">
+                        <div class="_2t-a _50tj">
+                            <div class="_2t-a _4pmj _2t-d">
+                                <div class="_218o">
+                                    <div class="_2t-e">
+                                        <div class="_4kny">
+                                            <h1 class="_19ea" data-click="bluebar_logo"><a class="_19eb"
+                                                    data-gt="&#123;&quot;chrome_nav_item&quot;:&quot;logo_chrome&quot;&#125;"
+                                                    href="https://www.facebook.com/?ref=logo"
+                                                    title="Ir para a p&#xe1;gina inicial do Facebook"><span
+                                                        class="_2md">Facebook</span></a></h1>
+                                        </div>
+                                    </div>
+                                    <div aria-label="Facebook" class="_2t-f" role="navigation">
+                                        <div class="_cy6" id="bluebar_profile_and_home">
+                                            <div class="_4kny">
+                                                <div class="_1k67 _cy7" data-click="profile_icon"
+                                                    data-testid="bluebar-profile-link"><a accesskey="2"
+                                                        data-gt="&#123;&quot;chrome_nav_item&quot;:&quot;timeline_chrome&quot;&#125;"
+                                                        class="_2s25 _606w" href="https://www.facebook.com/amorasdance/"
+                                                        title="Perfil"><span class="_1qv9"><img
+                                                                class="_2qgu _7ql _1m6h img"
+                                                                src="https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-1/cp0/p24x24/17202808_1246023995465126_5635792271939768631_n.png?_nc_cat=105&amp;ccb=1-5&amp;_nc_sid=84712d&amp;_nc_ohc=Uu3Nj1bWMIwAX9rOZjM&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.fcpq2-1.fna&amp;oh=b3f39400d407b4d1d89ebfecf2f7a64e&amp;oe=616A5D50"
+                                                                alt="" id="profile_pic_header_663349637065901" /><span
+                                                                class="_1vp5">A&#039;moras
+                                                                Dance</span></span></a></div>
+                                            </div>
+                                            <div class="_4kny _2s24"><a class="_2s25 _cy7" href="index.html"
+                                                    title="P&#xe1;gina inicial">Página inicial</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="_3a_u">
+                    <div class="_3-8y _3-95 _3b0b">
+                        <div style="background-color: #8C72CB" class="_3z-t"><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEX///9MaXH///////////////////////////////////////+2I0voAAAAC3RSTlOAAHTdqgOD4wItpp12MDIAAABDSURBVAhbYxCEAgY4o8l6NxBs1mDQ3g0GmxisyxiAIH0zw25XkIqQ3Qy7oYBhN0RqNw4pLhDDGiglCTQRYSDcCgzbAVkOMGvtylXuAAAAAElFTkSuQmCC" />
+                        </div>
+                        <div class="_3b0c">
+                            <div class="_3b0d">Publicações</div>
+                        </div>
+                    </div>
+                    <div class="_4t5n" role="main" id="app">
+
+                        {% block main %}
+
+                        {% endblock main %}
+
+                    </div>
+                </div>
+                <div class="_4t5o">
+                    <div>Gerado por César Moreira em Sábado, 18 de setembro de 2021 às 13:17 UTC-03:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const def_app = {
+            methods: {
+                get_item(evento) {
+                    console.log(evento.target)
+                    //debugger
+                    axios.post('http://127.0.0.1:5000/salva',
+                        evento.target.parentElement.innerHTML
+                    )
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+            }
+        }
+        const vm = Vue.createApp(def_app).mount("#app")
+    </script>
+</body>
+
+</html>
